@@ -71,7 +71,7 @@ $(document).ready(function() {
         } else {
             $("#emailError").html("Invalid Email");
             $("#emailError").show();
-            $("#form_email").css("border-bottom","2px solid #F90A0A");
+            $("#email").css("border-bottom","2px solid #F90A0A");
             error_email = true;
         }
     }

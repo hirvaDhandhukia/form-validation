@@ -53,7 +53,7 @@ body {
 }
 
 .form-control small {
-    visibility: hidden;
+    color: #F90A0A;
     position: absolute;
     bottom: 0;
     left: 0;
