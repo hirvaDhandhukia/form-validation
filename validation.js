@@ -69,7 +69,7 @@ $(document).ready(function() {
             $("#emailError").hide();
                $("#email").css("border-bottom","2px solid #34F458");
         } else {
-            $("#emailError").html("Invalid Email");
+            $("#emailError").html("Invalid Email. use syntax: xyz@mail.in");
             $("#emailError").show();
             $("#email").css("border-bottom","2px solid #F90A0A");
             error_email = true;
@@ -122,6 +122,7 @@ $(document).ready(function() {
             check_email();
             check_pass();
             check_cpass();
+            alert("Alert for submit btn");
 
             if (error_fname === false && error_lname === false && error_email === false && error_pass === false && error_cpass === false && error_number === false) {
                 alert("Registration Successfull");
