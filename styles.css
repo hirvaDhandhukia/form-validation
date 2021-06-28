@@ -59,7 +59,7 @@ body {
     left: 0;
 }
 
-.form button {
+.form .submit {
     background-color: #f7f7f7;
     border: #f7f7f70a;
     border-radius: 4px;

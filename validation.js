@@ -7,13 +7,13 @@ $(document).ready(function() {
     $('#passError').hide();
     $('#cpassError').hide();
 
-    // errors are all false rn
-    const error_fname = false;
-    const error_lname = false;
-    const error_email = false;
-    const error_number = false;
-    const error_pass = false;
-    const error_cpass = false;
+    // errors are all false rn (error nahi hai abhi)
+    var error_fname = false;
+    var error_lname = false;
+    var error_email = false;
+    var error_number = false;
+    var error_pass = false;
+    var error_cpass = false;
 
     $('#fname').focusout(function() {
         check_fname();
@@ -40,7 +40,13 @@ $(document).ready(function() {
         if(regex.test(fnameValue) && fnameValue !== '') {
             $('#fnameError').hide();
             $('#fname').css("border-bottom", "2px solid #34F458");
-        } else {
+        } else if(fnameValue =='') {
+            $('#fnameError').html("Name can't be empty");
+            $('#fnameError').show();
+            $("#fname").css("border-bottom","2px solid #F90A0A");
+            error_fname = true;
+        } 
+        else {
             $('#fnameError').html("Name should contain only characters");
             $('#fnameError').show();
             $("#fname").css("border-bottom","2px solid #F90A0A");
@@ -54,7 +60,13 @@ $(document).ready(function() {
         if(regex.test(lnameValue) && lnameValue !== '') {
             $('#lnameError').hide();
             $('#lname').css("border-bottom", "2px solid #34F458");
-        } else {
+        } else if (lnameValue =='') {
+            $('#lnameError').html("Name can't be empty");
+            $('#lnameError').show();
+            $("#lname").css("border-bottom","2px solid #F90A0A");
+            error_lname = true;
+        } 
+        else {
             $('#lnameError').html("Name should contain only characters");
             $('#lnameError').show();
             $("#lname").css("border-bottom","2px solid #F90A0A");
@@ -69,7 +81,7 @@ $(document).ready(function() {
             $("#emailError").hide();
                $("#email").css("border-bottom","2px solid #34F458");
         } else {
-            $("#emailError").html("Invalid Email. use syntax: xyz@mail.in");
+            $("#emailError").html("Invalid Email");
             $("#emailError").show();
             $("#email").css("border-bottom","2px solid #F90A0A");
             error_email = true;
@@ -91,8 +103,8 @@ $(document).ready(function() {
 
     function check_pass() {
         var password_length = $("#password").val().length;
-        if (password_length < 8) {
-           $("#passError").html("Atleast 8 Characters");
+        if (password_length < 8 || password_length > 20) {
+           $("#passError").html("password should contain 8 to 20 characters");
            $("#passError").show();
            $("#password").css("border-bottom","2px solid #F90A0A");
            error_pass = true;
@@ -109,22 +121,35 @@ $(document).ready(function() {
             $("#cpassError").html("Passwords Did not Matched");
                $("#cpassError").show();
                $("#cpassword").css("border-bottom","2px solid #F90A0A");
-               error_retype_password = true;
-        } else {
+               error_cpass = true;
+        } else if(cpassValue =='') {
+            $("#cpassError").html("This field is mandatory");
+               $("#cpassError").show();
+               $("#cpassword").css("border-bottom","2px solid #F90A0A");
+               error_cpass = true;
+        } 
+        else {
             $("#cpassError").hide();
             $("#cpassword").css("border-bottom","2px solid #34F458");
         }
     }
 
-    $('#submit').submit(function() {
+    $('#form').submit(function() {
+        error_fname = false;
+        error_lname = false;
+        error_email = false;
+        error_number = false;
+        error_pass = false;
+        error_cpass = false;
+
             check_fname();
             check_lname();
             check_email();
+            check_num();
             check_pass();
             check_cpass();
-            alert("Alert for submit btn");
 
-            if (error_fname === false && error_lname === false && error_email === false && error_pass === false && error_cpass === false && error_number === false) {
+            if (error_fname == false && error_lname == false && error_email == false && error_pass == false && error_cpass == false && error_number == false) {
                 alert("Registration Successfull");
                 return true;
             } else {
